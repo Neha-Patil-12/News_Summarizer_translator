@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Favorites</title>
+    </head>
+    <body>
+        <h1>Favorite Pages</h1>
+        <ul>
+            {% for favorite in favorites %}
+                <h4>{{favorite[0]}}</h4>
+                <div>{{ favorite[1]|safe }}</div>
+            {% endfor %}
+        </ul>
+        
+    </body>
+</html>
