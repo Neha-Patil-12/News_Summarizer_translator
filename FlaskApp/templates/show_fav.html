@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+  <!--this is for adding icons from bootstrap-->
+  <link rel="https://fonts.googleapis.com/css?family=Oxygen:400,300,700" rel="stylesheet" type="text/css">
+      
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-hWvhj6Uv+mi+m2F6NO1B8GJZ/D/Gwq3Nzm5vw5r9JjY0f5cDNlHXCUe+h/VDtnjJh5p0HojIWOK6UicpCbW47g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+        <title>Favorites</title>
+
+        <style>
+          body{
+            background-color: rgb(27, 25, 24);
+          }
+           .header {
+        /*background-color: #a47667;*/
+        background-color: rgb(27, 255, 171);;
+        color: #fff;
+        position: relative;
+        height: 50px;
+
+      }
+      
+      nav {
+        display: flex;
+        justify-content: space-between;
+      }
+      
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+      
+      nav ul li  {
+        margin:  10px;
+        text-decoration-line: none;
+        font-weight: bolder;
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      .head_cont li:hover{
+        border-bottom: 5px solid#765a30;
+        text-decoration-line: none;
+        cursor: pointer;
+      }
+      
+      .head_cont li a{
+        text-decoration: none;
+      }
+
+      nav ul li a{
+        text-decoration: none;
+        color: #281e32;
+      }
+    
+      
+      .header button {
+        background-color: transparent;
+        border: 0px;
+      }
+ 
+  h1{
+    text-align: center;
+    margin: 5%;
+    color: orange;
+    text-decoration: underline;
+  }
+
+  .card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  
+}
+
+.card {
+  width: calc(33.3% - 20px);
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  background-color: #109b82;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 5px 5px 0 0;
+}
+
+.card-body {
+  max-height: 200px; /* or any other maximum height you want */
+  overflow: auto;
+  background-color: #109b82;
+  padding: 5%;
+}
+
+#delete-btn{
+  position:absolute;
+  margin-left: 80%;
+  color: whitesmoke;
+}
+
+#delete-btn:hover{
+  background-color: red;
+}
+
+.fa-trash-alt:hover{
+  color:lightskyblue;
+}
+
+
+        </style>
+    </head>
+    <body>
+      <div class="header">
+        <nav>
+          <ul class="head_cont">
+            <li><a href="{{ url_for('protected_page') }}">Home</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+          </ul>
+        </nav>
+      </div>
+        <h1>Favorite Pages</h1>
+        <div class="card-container">
+            {% for favorite in favorites %}
+            <div class="card">
+                <div class="card-header">
+                <h3>Summarized News: </h3>
+                <form method="post" action="/delete_fav/{{ favorite[0] }}">
+                  <button type="submit" class="btn btn-primary"  id="delete-btn" onclick="delSuccess()"><i class="fa fa-trash-alt"></i></button>
+                </form>
+                <p style="position: relative;">Saved Date: {{favorite[5]}} </p>
+                <h2>Title:  {{favorite[1]}}</h2>
+                </div>
+                <div class="card-body">
+                <p>{{ favorite[2]|safe }}</p>
+                <h3>Translated News: </h3>
+                <h2>{{favorite[3]}}</h2>
+                <p>{{favorite[4]}}</p>
+            </div>
+            </div>
+            {% endfor %}
+    </div>
+        
+    </body>
+    <script>
+      function delSuccess(){
+        alert("Deleted Successfully!");
+      }
+    </script>
+</html>

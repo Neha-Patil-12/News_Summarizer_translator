@@ -1,0 +1,96 @@
+<html>
+
+<head>
+    <style>
+        .disp {
+            /*background-color: rgba(162, 153, 165, 0.8);*/
+            background-color: #ffe065;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            margin-top: 50px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        #particles-js{
+            height: 900px;
+        }
+
+        #trans {
+            justify-content: flex-start;
+            margin-top: 3%;
+        }
+
+        select {
+            /*background-color: #166edc;*/
+            background-color: #007bff;
+            padding: 1%;
+            height: 5%;
+        }
+
+        .disp1 {
+
+            background-color: #ceb7fe9e;
+        }
+
+        #transT,
+        #text {
+            padding: 1%;
+            margin: 3%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="disp" id="disp" name="disp">
+        
+        <h2 name="t1" value="{{session.title}}">{{ session.title }}</h2>
+        <p name="summary" value="{{session.summary}}">{{ session.summary }}</p>
+        <br>
+
+    </div>
+    <div>
+    <form action="{{url_for('translate')}} " method="post" onchange="return new_fun(event)">
+        <select id="trans" name="trans">
+            <option value="none">Translate</option>
+            <option value="hi">Hindi</option>
+            <option value="mr">Marathi</option>
+        </select>
+    </form>
+
+    <div class="disp1" id="disp1">
+
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous">
+    </script>
+<script type="text/javascript">
+
+    function new_fun(e) {
+    
+        e.preventDefault();
+        $.ajax({
+            url: "/translate",
+            type: "POST",
+            data: { trans: $("#trans").val()},
+            success: function (response) {
+                $("#disp1").html(response);
+            },
+            error: function (xhr) {
+                alert("someting wrong");
+                // Restore the previous value on error
+                $("#trans").val(previousValue);
+            }
+        });
+    }
+
+
+</script>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration Page</title>
+	<style>
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+	background-color: #0a0a0a;
+}
+
+.container {
+	width: 400px;
+	margin: 100px auto;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px #ccc;
+	padding: 20px;
+	position:absolute;
+	margin-left:40%;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+}
+
+h1 {
+	font-size: 30px;
+	text-align: center;
+	margin-bottom: 30px;
+	color: #333;
+}
+
+label {
+	font-size: 18px;
+	margin-bottom: 5px;
+	color: #333;
+}
+
+input {
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	margin-bottom: 20px;
+}
+
+button {
+	background-color: #333;
+	color: #fff;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	margin-top: 20px;
+	cursor: pointer;
+}
+
+a {
+	color: #333;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+#particles{
+	position:relative;
+}
+
+.header {
+        /*background-color: #a47667;*/
+        background-color: rgb(27, 255, 171);;
+        color: #fff;
+        position: relative;
+        height: 50px;
+      }
+      
+      nav {
+        display: flex;
+        justify-content: space-between;
+      }
+      
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+      
+      nav ul li {
+        margin: 10px;
+        color: #281e32;
+        text-decoration-line: none;
+        font-weight: bolder;
+        cursor: pointer;
+      }
+
+      .head_cont li:hover{
+        border-bottom: 5px solid#765a30;
+        text-decoration-line: none;
+        cursor: pointer;
+      }
+      
+    
+
+    </style>
+</head>
+<body>
+
+	<div class="header">
+		<nav>
+		  <ul class="head_cont">
+			<li><a style="color:#0a0a0a; font-size:large; text-decoration: none;" href="{{ url_for('index') }}">Home</a></li>
+		  </ul>
+		</nav>
+	  </div>
+
+	<div class="container">
+		<form action="{{url_for('register')}}" method="post">
+			<h1>Register</h1>
+			<label for="name">User Name:</label>
+			<input type="text" id="name" name="name" placeholder="Enter your user name">
+			<!--<label for="email">Email Address:</label>
+			<input type="email" id="email" name="email" placeholder="Enter your email address">-->
+			<label for="password">Password:</label>
+			<input type="password" id="password" name="password" placeholder="Enter a strong password">
+			<button type="submit">Register</button>
+			<p>Already have an account? <a href="{{url_for('login')}}">Log in</a></p>
+		</form>
+	</div>
+
+	<div id="particles-js"></div>
+	<!-- partial -->
+	<div id="particles">
+	  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css'></script>
+	<script src='https://code.jquery.com/jquery-1.11.1.min.js'></script>
+	<script>
+		$.getScript("https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js", function(){
+		particlesJS('particles-js',
+		  {
+			"particles": {
+			  "number": {
+				"value": 100,
+				"density": {
+				  "enable": true,
+				  "value_area": 500
+				}
+			  },
+			  "color": {
+				"value": "#b1c900"
+			  },
+			  "shape": {
+				"type": "circle",
+				"stroke": {
+				  "width": 0,
+				  "color": "#000000"
+				},
+				"polygon": {
+				  "nb_sides": 5
+				},
+				"image": {
+				  "width": 100,
+				  "height": 100
+				}
+			  },
+			  "opacity": {
+				"value": 0.5,
+				"random": false,
+				"anim": {
+				  "enable": false,
+				  "speed": 1,
+				  "opacity_min": 0.1,
+				  "sync": false
+				}
+			  },
+			  "size": {
+				"value": 5,
+				"random": true,
+				"anim": {
+				  "enable": false,
+				  "speed": 40,
+				  "size_min": 0.1,
+				  "sync": false
+				}
+			  },
+			  "line_linked": {
+				"enable": true,
+				"distance": 150,
+				"color": "#ffffff",
+				"opacity": 0.4,
+				"width": 1
+			  },
+			  "move": {
+				"enable": true,
+				"speed": 6,
+				"direction": "none",
+				"random": false,
+				"straight": false,
+				"out_mode": "out",
+				"attract": {
+				  "enable": false,
+				  "rotateX": 600,
+				  "rotateY": 1200
+				}
+			  }
+			},
+			"interactivity": {
+			  "detect_on": "canvas",
+			  "events": {
+				"onhover": {
+				  "enable": true,
+				  "mode": "repulse"
+				},
+				"onclick": {
+				  "enable": true,
+				  "mode": "push"
+				},
+				"resize": true
+			  },
+			  "modes": {
+				"grab": {
+				  "distance": 400,
+				  "line_linked": {
+					"opacity": 1
+				  }
+				},
+				"bubble": {
+				  "distance": 400,
+				  "size": 40,
+				  "duration": 2,
+				  "opacity": 8,
+				  "speed": 3
+				},
+				"repulse": {
+				  "distance": 100
+				},
+				"push": {
+				  "particles_nb": 4
+				},
+				"remove": {
+				  "particles_nb": 2
+				}
+			  }
+			},
+			"retina_detect": true,
+			"config_demo": {
+			  "hide_card": false,
+			  "background_color": "#b61924",
+			  "background_image": "",
+			  "background_position": "50% 50%",
+			  "background_repeat": "no-repeat",
+			  "background_size": "cover"
+			}
+		  }
+		);
+	
+	});
+	</script>
+	</div>
+		
+
+</body>
+</html>
